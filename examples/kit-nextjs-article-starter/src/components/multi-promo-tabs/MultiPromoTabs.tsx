@@ -22,7 +22,7 @@ export const Default: React.FC<MultiPromoTabsProps> = (props) => {
 
   const id = useId();
 
-  if (fields) {
+  if (fields && fields.data?.datasource) {
     const tabItems = fields.data.datasource.children?.results ?? [];
     // Get the initially selected tab title for the dropdown display
     const initialTabTitle = tabItems[0]?.title?.jsonValue?.value || 'Select an option';

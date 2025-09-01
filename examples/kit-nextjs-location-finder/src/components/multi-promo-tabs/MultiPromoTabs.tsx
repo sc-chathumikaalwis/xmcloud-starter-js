@@ -22,7 +22,7 @@ export const Default: React.FC<MultiPromoTabsProps> = (props) => {
   const { isEditing } = page.mode;
   const id = useId();
 
-  if (fields) {
+  if (fields && fields.data?.datasource) {
     const tabItems = fields.data.datasource.children?.results ?? [];
 
     return (
