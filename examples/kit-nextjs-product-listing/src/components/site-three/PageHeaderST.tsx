@@ -19,6 +19,10 @@ type PageHeaderSTProps = {
 };
 
 export const Default = (props: PageHeaderSTProps) => {
+  if (!props.fields) {
+    return null;
+  }
+
   return (
     <section
       className={`relative min-h-[20rem] lg:min-h-[40rem] flex items-center py-18 ${props.params.styles}`}
@@ -47,6 +51,10 @@ export const Default = (props: PageHeaderSTProps) => {
 };
 
 export const TextRight = (props: PageHeaderSTProps) => {
+  if (!props.fields) {
+    return null;
+  }
+
   return (
     <section
       className={`relative min-h-[20rem] lg:min-h-[40rem] flex items-center py-18 ${props.params.styles}`}
@@ -75,6 +83,10 @@ export const TextRight = (props: PageHeaderSTProps) => {
 };
 
 export const SplitScreen = (props: PageHeaderSTProps) => {
+  if (!props.fields) {
+    return null;
+  }
+
   return (
     <section
       className={`relative min-h-[20rem] lg:min-h-[40rem] flex flex-col lg:flex-row items-center pb-18 lg:py-18 bg-primary ${props.params.styles}`}
@@ -103,6 +115,10 @@ export const SplitScreen = (props: PageHeaderSTProps) => {
 };
 
 export const Stacked = (props: PageHeaderSTProps) => {
+  if (!props.fields) {
+    return null;
+  }
+
   return (
     <section className={`relative py-18 ${props.params.styles}`} data-class-change>
       <div className="container px-4 mx-auto">
@@ -126,6 +142,10 @@ export const Stacked = (props: PageHeaderSTProps) => {
 };
 
 export const TwoColumn = (props: PageHeaderSTProps) => {
+  if (!props.fields) {
+    return null;
+  }
+
   return (
     <section className={`relative pt-18 bg-primary ${props.params.styles}`} data-class-change>
       <div className="container px-4 mx-auto">
