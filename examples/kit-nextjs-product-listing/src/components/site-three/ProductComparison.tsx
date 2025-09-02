@@ -108,19 +108,6 @@ export const Default = (props: ProductComparisonProps) => {
     [props.fields?.Products]
   );
 
-  if (!props.fields || !formattedProducts.length) {
-    return (
-      <section className={`relative ${props.params?.styles}`} data-class-change>
-        <div className="container mx-auto px-4">
-          <h2 className="max-w-3xl mx-auto text-center text-2xl lg:text-5xl uppercase mb-16">
-            <ContentSdkText field={props.fields?.Title} />
-          </h2>
-          <p className="text-center text-gray-500">No products available for comparison.</p>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className={`relative ${props.params?.styles}`} data-class-change>
       <div className="container mx-auto px-4">
