@@ -17,6 +17,18 @@ import * as Image from 'src/components/image/Image';
 import * as ContentBlock from 'src/components/content-block/ContentBlock';
 import * as Container from 'src/components/container/Container';
 import * as ColumnSplitter from 'src/components/column-splitter/ColumnSplitter';
+import * as index from 'src/components/atoms/index';
+import * as paragraphschema from 'src/components/atoms/paragraph/paragraph.schema';
+import * as paragraph from 'src/components/atoms/paragraph/paragraph';
+import * as paragraphrichtext from 'src/components/atoms/paragraph/paragraph-rich-text';
+import * as numberschema from 'src/components/atoms/number/number.schema';
+import * as number from 'src/components/atoms/number/number';
+import * as imageschema from 'src/components/atoms/image/image.schema';
+import * as image from 'src/components/atoms/image/image';
+import * as headingschema from 'src/components/atoms/heading/heading.schema';
+import * as heading from 'src/components/atoms/heading/heading';
+import * as buttonschema from 'src/components/atoms/button/button.schema';
+import * as button from 'src/components/atoms/button/button';
 
 export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['BYOCWrapper', BYOCServerWrapper],
@@ -35,6 +47,13 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['ContentBlock', { ...ContentBlock, componentType: 'client' }],
   ['Container', { ...Container }],
   ['ColumnSplitter', { ...ColumnSplitter }],
+  ['index', { ...index }],
+  ['paragraph', { ...paragraphschema, ...paragraph }],
+  ['paragraph-rich-text', { ...paragraphrichtext }],
+  ['number', { ...numberschema, ...number }],
+  ['image', { ...imageschema, ...image, componentType: 'client' }],
+  ['heading', { ...headingschema, ...heading }],
+  ['button', { ...buttonschema, ...button, componentType: 'client' }],
 ]);
 
 export default componentMap;
