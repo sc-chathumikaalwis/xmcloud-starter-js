@@ -1,27 +1,26 @@
-﻿import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { JssModule } from '@sitecore-jss/sitecore-jss-angular';
 import { RichTextField } from '@sitecore-jss/sitecore-jss-angular';
 import { JssContextService } from '../../jss-context.service';
 import { SxaComponent } from './../sxa.component';
 import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-page-content',
-    templateUrl: './page-content.component.html',
-    host: {
-        'class': 'component content',
-        '[class]': 'styles',
-        '[id]': 'id',
-    },
-    standalone: false
+  selector: 'app-page-content',
+  templateUrl: './page-content.component.html',
+  imports: [JssModule],
+  host: {
+    'class': 'component content',
+    '[class]': 'styles',
+    '[id]': 'id',
+  }
 })
 export class PageContentComponent extends SxaComponent implements OnInit, OnDestroy {
   content?: RichTextField;
   contextContent?: RichTextField;
   private contextSubscription: Subscription;
+  private jssContext = inject(JssContextService);
 
-  constructor(private jssContext: JssContextService) {
-    super();
-  }
   ngOnInit() {
     super.ngOnInit();
 

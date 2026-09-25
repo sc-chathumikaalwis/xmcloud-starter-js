@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { JssModule } from '@sitecore-jss/sitecore-jss-angular';
 import { SxaComponent } from '../sxa.component';
 import { Field, LinkField, SxaLinkListFields } from '@sitecore-jss/sitecore-jss-angular';
 
 @Component({
-    selector: 'app-link-list',
-    templateUrl: './link-list.component.html',
-    host: {
-        'class': 'component link-list',
-        '[class]': 'styles',
-        '[attr.id]': 'id',
-    },
-    standalone: false
+  selector: 'app-link-list',
+  templateUrl: './link-list.component.html',
+  imports: [CommonModule, JssModule],
+  host: {
+    'class': 'component link-list',
+    '[class]': 'styles',
+    '[attr.id]': 'id',
+  }
 })
 export class LinkListComponent extends SxaComponent<SxaLinkListFields> implements OnInit {
   title?: Field<string>;

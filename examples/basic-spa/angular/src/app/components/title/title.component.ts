@@ -1,18 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { JssModule } from '@sitecore-jss/sitecore-jss-angular';
 import { LinkField, SxaTitleFields, TextField } from '@sitecore-jss/sitecore-jss-angular';
 import { SxaComponent } from '../sxa.component';
 import { Subscription } from 'rxjs';
 import { JssContextService } from '../../jss-context.service';
 
 @Component({
-    selector: 'app-title',
-    templateUrl: './title.component.html',
-    host: {
-        'class': 'component title',
-        '[class]': 'styles',
-        '[id]': 'id',
-    },
-    standalone: false
+  selector: 'app-title',
+  templateUrl: './title.component.html',
+  imports: [CommonModule, JssModule],
+  host: {
+    'class': 'component title',
+    '[class]': 'styles',
+    '[id]': 'id',
+  }
 })
 export class TitleComponent extends SxaComponent<SxaTitleFields> implements OnInit, OnDestroy {
   text: TextField;
@@ -20,10 +22,7 @@ export class TitleComponent extends SxaComponent<SxaTitleFields> implements OnIn
   pageEditing?: boolean;
   
   private contextSubscription: Subscription;
-
-  constructor(private jssContext: JssContextService) {
-    super();
-  }
+  private jssContext = inject(JssContextService);
 
   ngOnInit() {
     super.ngOnInit();

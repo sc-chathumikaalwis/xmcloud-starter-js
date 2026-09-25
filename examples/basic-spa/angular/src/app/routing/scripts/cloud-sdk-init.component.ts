@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { CloudSDK } from '@sitecore-cloudsdk/core/browser';
 import '@sitecore-cloudsdk/events/browser';
@@ -11,12 +11,11 @@ import { JssState } from '../../JssState';
  * Component to init CloudSDK logic - to allow events throughout the site
  */
 @Component({
-    selector: 'app-cloud-sdk-init',
-    template: '',
-    standalone: false
+  selector: 'app-cloud-sdk-init',
+  template: '',
 })
 export class CloudSdkInitComponent implements OnInit {
-  constructor(private jssContext: JssContextService) {}
+  private jssContext = inject(JssContextService);
 
   ngOnInit(): void {
     if (!isServer() && environment.production) {

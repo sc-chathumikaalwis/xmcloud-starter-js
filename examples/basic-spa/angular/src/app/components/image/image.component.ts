@@ -1,26 +1,25 @@
-import { Component, OnInit, OnDestroy, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, TemplateRef, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { JssModule } from '@sitecore-jss/sitecore-jss-angular';
 import { Subscription } from 'rxjs';
 import { EditMode, ImageField } from '@sitecore-jss/sitecore-jss-angular';
 import { SxaComponent } from '../sxa.component';
 import { JssContextService } from '../../jss-context.service';
 
 @Component({
-    selector: 'app-image',
-    templateUrl: './image.component.html',
-    standalone: false
+  selector: 'app-image',
+  templateUrl: './image.component.html',
+  imports: [CommonModule, JssModule],
 })
 export class ImageComponent extends SxaComponent implements OnInit, OnDestroy {
-  @ViewChild('default', { static: true }) defaultVariant: TemplateRef<any>;
-  @ViewChild('banner', { static: true }) bannerVariant: TemplateRef<any>;
+  @ViewChild('default', { static: true }) defaultVariant: TemplateRef<unknown>;
+  @ViewChild('banner', { static: true }) bannerVariant: TemplateRef<unknown>;
   classHeroBannerEmpty = '';
   backgroundStyle = {};
   modifyImageProps = {};
   isEditing = false;
   private contextSubscription: Subscription;
-
-  constructor(private jssContext: JssContextService) {
-    super();
-  }
+  private jssContext = inject(JssContextService);
 
   ngOnInit() {
     super.ngOnInit();
@@ -60,7 +59,7 @@ export class ImageComponent extends SxaComponent implements OnInit, OnDestroy {
     }
   }
 
-  public get variant(): TemplateRef<any> {
+  public get variant(): TemplateRef<unknown> {
     return this.rendering.params?.FieldNames === 'Banner'
       ? this.bannerVariant
       : this.defaultVariant;

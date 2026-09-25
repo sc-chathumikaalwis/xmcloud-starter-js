@@ -1,21 +1,13 @@
-import { Injectable, PLATFORM_ID, Inject, } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject, } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { ExtraSubscriptionOptions, EmptyObject, MutationResult } from 'apollo-angular/types';
 import {
   QueryOptions,
   ApolloQueryResult,
   SubscriptionOptions,
   MutationOptions,
-  DocumentNode,
-  FetchResult
+  DocumentNode
 } from '@apollo/client/core';
-
-// Type aliases for compatibility
-type EmptyObject = Record<string, any>;
-type MutationResult<T> = FetchResult<T>;
-interface ExtraSubscriptionOptions {
-  useZone?: boolean;
-  extraOptions?: Record<string, unknown>;
-}
 import { Observable, EMPTY } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { ComponentRendering, isEditorActive, resetEditorChromes } from '@sitecore-jss/sitecore-jss-angular';
@@ -44,15 +36,15 @@ export interface JssGraphQLOptions {
 export class JssGraphQLService {
   private isEditingOrPreviewingAndSsr: boolean;
 
-  constructor(
-    private readonly apollo: Apollo,
-    private readonly sitecoreContext: JssContextService,
-    @Inject(PLATFORM_ID) private readonly platformId: string,
-  ) {
+  constructor() {
     this.isEditingOrPreviewingAndSsr =
       isPlatformServer(this.platformId) &&
       this.sitecoreContext.stateValue.sitecore.context.pageState !== 'normal';
   }
+
+  protected apollo = inject(Apollo);
+  protected sitecoreContext = inject(JssContextService);
+  protected platformId = inject(PLATFORM_ID);
 
   private static extractVariableNames(query: DocumentNode) {
     const variableNames: { [key: string]: boolean } = {};
